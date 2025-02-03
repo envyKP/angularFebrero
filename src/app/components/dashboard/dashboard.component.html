@@ -1,0 +1,71 @@
+<div class="dashboard-container">
+  <!-- Header con botón de logout -->
+  <div class="dashboard-header">
+    <button class="logout-button" (click)="onLogout()">
+      Cerrar Sesión
+    </button>
+  </div>
+
+  <!-- Estadísticas -->
+  <div class="statistics-container">
+    <div class="stat-card">
+      <h3>Total de Tareas</h3>
+      <p class="stat-number">{{totalTasks}}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Completadas</h3>
+      <p class="stat-number">{{completionRate | number:'1.0-0'}}%</p>
+    </div>
+  </div>
+
+  <!-- Tablero Kanban -->
+  <div class="kanban-board">
+    <!-- Por Asignar -->
+    <div class="kanban-column">
+      <h3>Por Asignar</h3>
+      <div class="task-list">
+        <div class="task-card" *ngFor="let task of getTasksByStatus('por_asignar')">
+          <h4>{{task.title}}</h4>
+          <p>{{task.description}}</p>
+          <small>{{task.date | date:'short'}}</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- En Curso -->
+    <div class="kanban-column">
+      <h3>En Curso</h3>
+      <div class="task-list">
+        <div class="task-card" *ngFor="let task of getTasksByStatus('en_curso')">
+          <h4>{{task.title}}</h4>
+          <p>{{task.description}}</p>
+          <small>{{task.date | date:'short'}}</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Completadas -->
+    <div class="kanban-column">
+      <h3>Completadas</h3>
+      <div class="task-list">
+        <div class="task-card" *ngFor="let task of getTasksByStatus('completada')">
+          <h4>{{task.title}}</h4>
+          <p>{{task.description}}</p>
+          <small>{{task.date | date:'short'}}</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verificadas -->
+    <div class="kanban-column">
+      <h3>Verificadas</h3>
+      <div class="task-list">
+        <div class="task-card" *ngFor="let task of getTasksByStatus('verificada')">
+          <h4>{{task.title}}</h4>
+          <p>{{task.description}}</p>
+          <small>{{task.date | date:'short'}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
